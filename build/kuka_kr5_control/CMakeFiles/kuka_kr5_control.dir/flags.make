@@ -6,5 +6,5 @@ CXX_FLAGS = -fPIC   -std=c++11
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"kuka_kr5_control\" -Dkuka_kr5_control_EXPORTS
 
-CXX_INCLUDES = -I/home/rafi/ros_workspaces/final_project/c106a-project2/src/kuka_kr5_control/include -I/opt/ros/kinetic/include -I/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /usr/local/include/eigen3 
+CXX_INCLUDES = -I/home/rafi/ros_workspaces/final_project/c106a-project2/src/kuka_kr5_control/include -I/opt/ros/kinetic/include -I/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/opt/ros/kinetic/include/opencv-3.3.1-dev -I/opt/ros/kinetic/include/opencv-3.3.1-dev/opencv -isystem /usr/local/include/eigen3 
 

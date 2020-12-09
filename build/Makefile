@@ -1167,6 +1167,19 @@ actionlib_msgs_generate_messages_lisp/fast:
 .PHONY : actionlib_msgs_generate_messages_lisp/fast
 
 #=============================================================================
+# Target rules for targets named camera_node
+
+# Build rule for target.
+camera_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 camera_node
+.PHONY : camera_node
+
+# fast build rule for target.
+camera_node/fast:
+	$(MAKE) -f kuka_kr5_control/CMakeFiles/camera_node.dir/build.make kuka_kr5_control/CMakeFiles/camera_node.dir/build
+.PHONY : camera_node/fast
+
+#=============================================================================
 # Target rules for targets named plate_control_node
 
 # Build rule for target.
@@ -1412,6 +1425,7 @@ help:
 	@echo "... actionlib_generate_messages_lisp"
 	@echo "... actionlib_msgs_generate_messages_eus"
 	@echo "... actionlib_msgs_generate_messages_lisp"
+	@echo "... camera_node"
 	@echo "... plate_control_node"
 	@echo "... kuka_kr5_control"
 	@echo "... nav_msgs_generate_messages_lisp"

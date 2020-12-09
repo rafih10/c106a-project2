@@ -136,6 +136,7 @@
 /home/rafi/ros_workspaces/final_project/c106a-project2/build/kuka_kr5_control/CMakeFiles/install/local.dir
 /home/rafi/ros_workspaces/final_project/c106a-project2/build/kuka_kr5_control/CMakeFiles/list_install_components.dir
 /home/rafi/ros_workspaces/final_project/c106a-project2/build/kuka_kr5_control/CMakeFiles/install/strip.dir
+/home/rafi/ros_workspaces/final_project/c106a-project2/build/kuka_kr5_control/CMakeFiles/camera_node.dir
 /home/rafi/ros_workspaces/final_project/c106a-project2/build/kuka_kr5_control/CMakeFiles/plate_control_node.dir
 /home/rafi/ros_workspaces/final_project/c106a-project2/build/kuka_kr5_control/CMakeFiles/kuka_kr5_control.dir
 /home/rafi/ros_workspaces/final_project/c106a-project2/build/kuka_kr5_control/CMakeFiles/nav_msgs_generate_messages_lisp.dir

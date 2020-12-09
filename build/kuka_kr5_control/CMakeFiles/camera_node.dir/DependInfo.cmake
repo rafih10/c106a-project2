@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/rafi/ros_workspaces/final_project/c106a-project2/src/kuka_kr5_control/src/plate_control_node.cpp" "/home/rafi/ros_workspaces/final_project/c106a-project2/build/kuka_kr5_control/CMakeFiles/kuka_kr5_control.dir/src/plate_control_node.cpp.o"
+  "/home/rafi/ros_workspaces/final_project/c106a-project2/src/kuka_kr5_control/src/plate_control_node.cpp" "/home/rafi/ros_workspaces/final_project/c106a-project2/build/kuka_kr5_control/CMakeFiles/camera_node.dir/src/plate_control_node.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -27,6 +27,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/home/rafi/ros_workspaces/final_project/c106a-project2/build/kuka_kr5_control/CMakeFiles/kuka_kr5_control.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

@@ -166,6 +166,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+kuka_kr5_control/CMakeFiles/camera_node.dir/rule:
+	cd /home/rafi/ros_workspaces/final_project/c106a-project2/build && $(MAKE) -f CMakeFiles/Makefile2 kuka_kr5_control/CMakeFiles/camera_node.dir/rule
+.PHONY : kuka_kr5_control/CMakeFiles/camera_node.dir/rule
+
+# Convenience name for target.
+camera_node: kuka_kr5_control/CMakeFiles/camera_node.dir/rule
+
+.PHONY : camera_node
+
+# fast build rule for target.
+camera_node/fast:
+	cd /home/rafi/ros_workspaces/final_project/c106a-project2/build && $(MAKE) -f kuka_kr5_control/CMakeFiles/camera_node.dir/build.make kuka_kr5_control/CMakeFiles/camera_node.dir/build
+.PHONY : camera_node/fast
+
+# Convenience name for target.
 kuka_kr5_control/CMakeFiles/plate_control_node.dir/rule:
 	cd /home/rafi/ros_workspaces/final_project/c106a-project2/build && $(MAKE) -f CMakeFiles/Makefile2 kuka_kr5_control/CMakeFiles/plate_control_node.dir/rule
 .PHONY : kuka_kr5_control/CMakeFiles/plate_control_node.dir/rule
@@ -351,6 +366,7 @@ src/plate_control_node.o: src/plate_control_node.cpp.o
 
 # target to build an object file
 src/plate_control_node.cpp.o:
+	cd /home/rafi/ros_workspaces/final_project/c106a-project2/build && $(MAKE) -f kuka_kr5_control/CMakeFiles/camera_node.dir/build.make kuka_kr5_control/CMakeFiles/camera_node.dir/src/plate_control_node.cpp.o
 	cd /home/rafi/ros_workspaces/final_project/c106a-project2/build && $(MAKE) -f kuka_kr5_control/CMakeFiles/plate_control_node.dir/build.make kuka_kr5_control/CMakeFiles/plate_control_node.dir/src/plate_control_node.cpp.o
 	cd /home/rafi/ros_workspaces/final_project/c106a-project2/build && $(MAKE) -f kuka_kr5_control/CMakeFiles/kuka_kr5_control.dir/build.make kuka_kr5_control/CMakeFiles/kuka_kr5_control.dir/src/plate_control_node.cpp.o
 .PHONY : src/plate_control_node.cpp.o
@@ -361,6 +377,7 @@ src/plate_control_node.i: src/plate_control_node.cpp.i
 
 # target to preprocess a source file
 src/plate_control_node.cpp.i:
+	cd /home/rafi/ros_workspaces/final_project/c106a-project2/build && $(MAKE) -f kuka_kr5_control/CMakeFiles/camera_node.dir/build.make kuka_kr5_control/CMakeFiles/camera_node.dir/src/plate_control_node.cpp.i
 	cd /home/rafi/ros_workspaces/final_project/c106a-project2/build && $(MAKE) -f kuka_kr5_control/CMakeFiles/plate_control_node.dir/build.make kuka_kr5_control/CMakeFiles/plate_control_node.dir/src/plate_control_node.cpp.i
 	cd /home/rafi/ros_workspaces/final_project/c106a-project2/build && $(MAKE) -f kuka_kr5_control/CMakeFiles/kuka_kr5_control.dir/build.make kuka_kr5_control/CMakeFiles/kuka_kr5_control.dir/src/plate_control_node.cpp.i
 .PHONY : src/plate_control_node.cpp.i
@@ -371,6 +388,7 @@ src/plate_control_node.s: src/plate_control_node.cpp.s
 
 # target to generate assembly for a file
 src/plate_control_node.cpp.s:
+	cd /home/rafi/ros_workspaces/final_project/c106a-project2/build && $(MAKE) -f kuka_kr5_control/CMakeFiles/camera_node.dir/build.make kuka_kr5_control/CMakeFiles/camera_node.dir/src/plate_control_node.cpp.s
 	cd /home/rafi/ros_workspaces/final_project/c106a-project2/build && $(MAKE) -f kuka_kr5_control/CMakeFiles/plate_control_node.dir/build.make kuka_kr5_control/CMakeFiles/plate_control_node.dir/src/plate_control_node.cpp.s
 	cd /home/rafi/ros_workspaces/final_project/c106a-project2/build && $(MAKE) -f kuka_kr5_control/CMakeFiles/kuka_kr5_control.dir/build.make kuka_kr5_control/CMakeFiles/kuka_kr5_control.dir/src/plate_control_node.cpp.s
 .PHONY : src/plate_control_node.cpp.s
@@ -386,6 +404,7 @@ help:
 	@echo "... install/local"
 	@echo "... list_install_components"
 	@echo "... install/strip"
+	@echo "... camera_node"
 	@echo "... plate_control_node"
 	@echo "... kuka_kr5_control"
 	@echo "... nav_msgs_generate_messages_lisp"

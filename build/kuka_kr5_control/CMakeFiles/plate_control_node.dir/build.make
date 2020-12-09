@@ -91,6 +91,10 @@ plate_control_node_EXTERNAL_OBJECTS =
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: kuka_kr5_control/CMakeFiles/plate_control_node.dir/src/plate_control_node.cpp.o
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: kuka_kr5_control/CMakeFiles/plate_control_node.dir/build.make
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/libkuka_kr5_control.so
+/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/libcv_bridge.so
+/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_core3.so.3.3.1
+/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_imgproc3.so.3.3.1
+/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/x86_64-linux-gnu/libopencv_imgcodecs3.so.3.3.1
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/libtf.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/libtf2_ros.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/libactionlib.so
@@ -99,7 +103,6 @@ plate_control_node_EXTERNAL_OBJECTS =
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/libcontroller_manager.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/libroscpp.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libboost_signals.so
-/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/libroscpp_serialization.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/libxmlrpcpp.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libtinyxml2.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/libclass_loader.so
@@ -110,21 +113,22 @@ plate_control_node_EXTERNAL_OBJECTS =
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/librosconsole_backend_interface.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/libroslib.so
+/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/librospack.so
+/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libpython2.7.so
+/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
+/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libtinyxml.so
+/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/libroscpp_serialization.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/librostime.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/libcpp_common.so
+/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libboost_system.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libboost_thread.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
-/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/libroslib.so
-/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /opt/ros/kinetic/lib/librospack.so
-/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libpython2.7.so
-/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
-/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
-/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: /usr/lib/x86_64-linux-gnu/libtinyxml.so
 /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node: kuka_kr5_control/CMakeFiles/plate_control_node.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/rafi/ros_workspaces/final_project/c106a-project2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/rafi/ros_workspaces/final_project/c106a-project2/devel/lib/kuka_kr5_control/plate_control_node"
 	cd /home/rafi/ros_workspaces/final_project/c106a-project2/build/kuka_kr5_control && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/plate_control_node.dir/link.txt --verbose=$(VERBOSE)
