@@ -9,7 +9,8 @@
   <arg name="camera_fps" default="30" />
   <arg name="camera_width" default="640" />
   <arg name="camera_height" default="480" />
-  <arg name="camera_pos_z" default="2.0" />
+  <arg name="camera_pos_z" default="1.8" />
+  <arg name="camera_pos_y" default="-0.2" />
   <arg name="camera_pos_x" default="2.0" />
   
   <!-- Load the:-->
@@ -23,6 +24,7 @@
     camera_width:=$(arg camera_width)
     camera_height:=$(arg camera_height)
     camera_pos_z:=$(arg camera_pos_z)
+    camera_pos_y:=$(arg camera_pos_y)
     camera_pos_x:=$(arg camera_pos_x)
     "
   />

@@ -19,9 +19,9 @@ namespace kuka
   {
     //get Params:
     controller_type_ = nh.param("control_constants/controller_type", std::string("pid"));
-    p_gain_          = nh.param("control_constants/p_gain", 3.0);
-    i_gain_          = nh.param("control_constants/i_gain", 7.0);
-    d_gain_          = nh.param("control_constants/d_gain", 3.0); //default all 3
+    p_gain_          = nh.param("control_constants/p_gain", 5.0);
+    i_gain_          = nh.param("control_constants/i_gain", 2.0);
+    d_gain_          = nh.param("control_constants/d_gain", 30.0); //default all 3
 
     // w:
     des_ball_pos_x_ = nh.param("control_constants/x_des_pos", 0.05); //default 0.05

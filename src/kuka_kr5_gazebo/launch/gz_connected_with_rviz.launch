@@ -15,7 +15,8 @@
    <arg name="use_realsense" default="True" />
    <arg name="use_asus_xtion" default="False" />
    <arg name="camera_pos_z" default="1" />
-   <arg name="camera_pos_x" default="-1.5" /> <!-- actually this - makes no sense no idea why it must be here... -->
+   <arg name="camera_pos_y" default="0.0" /> 
+   <arg name="camera_pos_x" default="-1.2" /> <!-- -1.5 default actually this - no sense-->
    <arg name="use_rgb" default="True" />
    <arg name="use_depth" default="True" />
    <arg name="camera_fps" default="30" /> <!-- both fps rgb and depth  -->
@@ -77,6 +78,7 @@
              <arg name="use_realsense" default="$(arg use_realsense)" />
              <arg name="use_asus_xtion" default="$(arg use_asus_xtion)" />
              <arg name="camera_pos_z" default="$(arg camera_pos_z)" />
+             <arg name="camera_pos_y" default="$(arg camera_pos_y)" />
              <arg name="camera_pos_x" value="$(arg camera_pos_x)" />
              <arg name="use_rgb" default="$(arg use_rgb)" />
              <arg name="use_depth" default="$(arg use_depth)" />

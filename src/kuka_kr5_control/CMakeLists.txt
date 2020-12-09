@@ -10,6 +10,8 @@ add_compile_options(-std=c++11)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  rospy
+  cv_bridge
   std_msgs
   geometry_msgs
   nav_msgs
@@ -129,6 +131,7 @@ set(HEADERS
 
 set(SOURCES
    src/plate_control_node.cpp
+   src/camera_node.py
 )
 
 ## Declare a cpp library
@@ -136,6 +139,7 @@ add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 ## Declare a cpp executable
 add_executable(plate_control_node ${SOURCES})
+add_executable(camera_node ${SOURCES})
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
@@ -144,6 +148,7 @@ add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS})
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} Eigen3::Eigen)
 target_link_libraries(plate_control_node ${PROJECT_NAME})
+target_link_libraries(camera_node ${PROJECT_NAME})
 
 #############
 ## Install ##
@@ -168,6 +173,12 @@ target_link_libraries(plate_control_node ${PROJECT_NAME})
 
 ## Mark executables and/or libraries for installation
 install(TARGETS ${PROJECT_NAME} plate_control_node
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(TARGETS ${PROJECT_NAME} camera_node
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
