@@ -46,10 +46,10 @@ def image_callback(ros_image):
     ball_cluster = get_ball_cluster(clustered_image)
 
     # Take the ball cluster and convert it to usable coordinates
-    ball_coordinates = get_ball_coordinates(ball_cluster)
+    x_coord, y_coord = get_ball_coordinates(ball_cluster)
 
     # Convert the coordinates to an odometry message which can be published to plate_control
-    ball_odom = convert_to_odom(ball_coordinates)
+    ball_odom = convert_to_odom(x_coord, y_coord)
 
     # Publish the coordinates
     ball_pub.publish(ball_odom)
@@ -130,7 +130,7 @@ def get_ball_coordinates(cluster):
 
 # Converts the coordinates of the ball to a message which can be published to 
 # the cpp plate_control_node
-def convert_to_odom(coordinates):
+def convert_to_odom(x_coord, y_coord):
     # Global variables used for velocity calculation
     global last_time, previous_x, previous_y
 
