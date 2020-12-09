@@ -18,6 +18,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   hardware_interface
   controller_manager
+  sensor_msgs
 )
 
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)
