@@ -1,8 +1,0 @@
-prefix=/home/rafi/ros_workspaces/final_project/c106a-project2/install
-
-Name: kr5_description
-Description: Description of kr5_description
-Version: 1.2.1
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

@@ -1,2 +1,0 @@
-ball_description:camera_description:kr5_description:kuka_kr5_control:kuka_kr5_gazebo:kuka_moveit_config
--DCATKIN_DEVEL_PREFIX=/home/rafi/ros_workspaces/final_project/c106a-project2/devel -DCMAKE_INSTALL_PREFIX=/home/rafi/ros_workspaces/final_project/c106a-project2/install -G Unix Makefiles

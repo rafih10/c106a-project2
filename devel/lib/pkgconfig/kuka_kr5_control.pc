@@ -1,8 +1,0 @@
-prefix=/home/rafi/ros_workspaces/final_project/c106a-project2/devel
-
-Name: kuka_kr5_control
-Description: Description of kuka_kr5_control
-Version: 0.0.0
-Cflags: -I/home/rafi/ros_workspaces/final_project/c106a-project2/src/kuka_kr5_control/include
-Libs: -L${prefix}/lib -lkuka_kr5_control
-Requires: std_msgs roscpp tf std_msgs geometry_msgs nav_msgs

@@ -1,8 +1,0 @@
-prefix=/home/rafi/ros_workspaces/final_project/c106a-project2/devel
-
-Name: kuka_moveit_config
-Description: Description of kuka_moveit_config
-Version: 0.3.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
