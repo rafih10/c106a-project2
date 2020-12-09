@@ -1,0 +1,8 @@
+prefix=/home/rafi/ros_workspaces/final_project/c106a-project2/install
+
+Name: kuka_kr5_gazebo
+Description: Description of kuka_kr5_gazebo
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp rospy std_msgs
