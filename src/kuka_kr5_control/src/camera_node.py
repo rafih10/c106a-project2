@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #Import the rospy package. For an import to work, it must be specified
 #in both the package manifest AND the Python file in which it is used.
 import rospy
