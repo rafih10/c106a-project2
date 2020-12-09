@@ -55,6 +55,9 @@ namespace kuka
     joints_sub_ = nh.subscribe("/kuka/joint_states", 5, &ControlNode::jointsCallback, this);
     ball_state_sub_ = nh.subscribe("/gazebo/ball/odom", 5, &ControlNode::ballCallback, this);
 
+    // Use this once we start publishing the coordinates of the ball
+    //ball_state_sub_ = nh.subscribe("ball_coordinates", 5, &ControlNode::ballCallback, this);
+
     command13_sub_ = nh.subscribe("/kuka/control13_command", 5, &ControlNode::controlCommandCallback_13, this);
     command46_sub_ = nh.subscribe("/kuka/control46_command", 5, &ControlNode::controlCommandCallback_46, this);
 
