@@ -4,8 +4,8 @@ control_constants:
   controller_type: pid       # pid, state,
 
   # desired state:
-  x_des_pos: 0.05 #default 0.05
-  y_des_pos: -0.05 #default -0.05
+  x_des_pos: 0.045 #default 0.05
+  y_des_pos: -0.045 #default -0.05
 
   #PID Values for PID Controller_type
   # values that work: 5, 2, 30 /// 10 5 30

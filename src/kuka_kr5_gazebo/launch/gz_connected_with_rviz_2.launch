@@ -27,8 +27,8 @@
     <!-- Ball: -->
     <arg name="use_ball" default="True" />
     <arg name="ball_name" default="ball" />
-    <arg name="ball_x_pos" default="1.5" /> <!-- 1.4 (for zero state) -->
-    <arg name="ball_y_pos" default="0.0" /> <!-- world y= x(frame) (for zero state!) -->
+    <arg name="ball_x_pos" default="1.25" /> <!-- 1.4 (for zero state) -->
+    <arg name="ball_y_pos" default="0.15" /> <!-- world y= x(frame) (for zero state!) -->
     <arg name="ball_z_pos" default="0.66" />   <!-- 0.67 (for zero state), 1.76 (top) -->
 
   <!-- these are the arguments you can pass this launch file, for example paused:=true -->

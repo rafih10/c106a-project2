@@ -23,20 +23,19 @@ import tf
 import numpy as np
 import cv2
 
-
 # Subscribes to camera inputs 
 def camera_listener():
     # Topic = "/my_camera/sensor/camera/rgb/image_raw" - camera information
     camera_subscriber = rospy.Subscriber("/my_camera/sensor/camera/rgb/image_raw", Image, image_callback)
 
-    # ball_subscriber = rospy.Subscriber("/gazebo/ball/odom", Odometry, ball_callback)
+    ball_subscriber = rospy.Subscriber("/gazebo/ball/odom", Odometry, ball_callback)
 
     # Wait until this node start getting information
     rospy.spin()
 
-# def ball_callback(ball_coord):
-# 	ball_point = ball_coord.pose.pose.position
-# 	print("Actual ball: "+ "X: " + str(ball_point.x) + " Y: " + str(ball_point.y))
+def ball_callback(ball_coord):
+	ball_point = ball_coord.pose.pose.position
+	print("Actual ball: "+ "X: " + str(ball_point.x) + " Y: " + str(ball_point.y))
 
 
 # Takes the information from the image and clusters it
@@ -59,14 +58,14 @@ def image_callback(ros_image):
 
     # Get the ball coordinates using the regular image and looking for yellow
     y_coord, x_coord = get_ball_coordinates(cv2_image)
-    print("X: " + str(x_coord) + " Y: " + str(y_coord))
-    return
+    # return
 
     # Convert the coordinates to an odometry message which can be published to plate_control
-    ball_odom = convert_to_odom(x_coord, y_coord)
+    ball_odom, x_coord, y_coord = convert_to_odom(x_coord, y_coord)
 
     # Publish the coordinates
     ball_pub.publish(ball_odom)
+    print("X: " + str(x_coord) + " Y: " + str(y_coord))
 
 
 # Converts the image from sensor_msgs.msg -> some usable form by cv2 
@@ -100,28 +99,31 @@ def cluster_image(img, n_clusters=4, random_state=0):
 
 # Given a clustered image, will find the ball and returns that cluster
 def get_ball_coordinates(clustered_image):
-    global camera_x, camera_y, flipped_plate
-    if (flipped_plate):
+    if (camera_vals[0]):
         # Search through clustered image for ball
+        camera_x = camera_vals[1]
+        camera_y = camera_vals[2]
         for x in range(camera_x - 20, camera_x + 20):
             row = clustered_image[x]
             for y in range(camera_y - 20, camera_y + 20):
                 # Check if any of the pixels are not white
                 if (row[y][0] < 100):
-                    camera_x = x
-                    camera_y = y
+                    camera_vals[1] = x
+                    camera_vals[2] = y
                     return x, y
-
     # Search through clustered image for ball
     for x in range(20, 300):
         row = clustered_image[x]
         for y in range(200, 500):
             # Check if any of the pixels are not white
             if (row[y][0] < 100):
-                flipped_plate = True
+                camera_vals[0] = True
+                camera_vals[1] = x
+                camera_vals[2] = y
                 return x, y
-
     # Ball is off the table
+    print(camera_vals[0])
+    camera_vals[0] = False
     return -1, -1
 
 
@@ -129,7 +131,7 @@ def get_ball_coordinates(clustered_image):
 # the cpp plate_control_node
 def convert_to_odom(x_coord, y_coord):
     # Global variables used for velocity calculation
-    global last_time, previous_x, previous_y
+    last_time, previous_x, previous_y = prev_vals
 
     # Get the current_time
     current_time = rospy.Time.now()
@@ -152,19 +154,19 @@ def convert_to_odom(x_coord, y_coord):
     odom.child_frame_id = "idk"
     
     # Calculate the velocity using a frame by frame calculation
-    dt = current_time - last_time
+    dt = 0.05 #current_time - last_time
     vx = (x_coord - previous_x) / dt
     vy = (y_coord - previous_y) / dt
 
     odom.twist.twist = Twist(Vector3(vx, vy, 0), Vector3(0, 0, 0))
 
     # Set the last values
-    last_time = current_time
-    previous_x = x_coord
-    previous_y = y_coord
+    prev_vals[0] = current_time
+    prev_vals[1] = x_coord
+    prev_vals[2] = y_coord
 
     # To Do here
-    return odom
+    return odom, x_coord, y_coord
     
 
 # If this file is started
@@ -177,10 +179,11 @@ if __name__ == '__main__':
     last_time = 0
     previous_x = 0
     previous_y = 0
+    prev_vals = [0, 0, 0]
 
     # Used to convert from camera coords to irl coords
-    x_mul_constant = 1
-    y_mul_constant = 1
+    x_mul_constant = 0.00576
+    y_mul_constant = 0.0005019
     x_add_constant = 0
     y_add_constant = 0
 
@@ -188,6 +191,8 @@ if __name__ == '__main__':
     flipped_plate = False
     camera_x = -1
     camera_y = -1
+
+    camera_vals = [flipped_plate, camera_x, camera_y]
 
     # Bridges between rospy image and cv2 image
     bridge = CvBridge()
