@@ -38,10 +38,10 @@ def image_callback(ros_image):
     # First process the image so its useable by the cv package a
     cv2_image = convert_image(ros_image)
 
-    # Checking to make sure the image was properly converted
-    if (cv2_image == -1):
-        # Stop processing since there was an error
-        return
+    # # Checking to make sure the image was properly converted
+    # if (cv2_image == -1):
+    #     # Stop processing since there was an error
+    #     return
 
     # Cluster the converted image so that the ball is in one cluster
     clustered_image = cluster_image(cv2_image)
