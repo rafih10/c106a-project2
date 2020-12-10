@@ -5,7 +5,7 @@
   <arg name="use_ros_control" default="True" /> <!-- in case of true use the ros controller plugin with update rate etc. set it to false if you wanna use it with moveIt! -->
   <arg name="motors_controller_type" default="EffortJointInterface" /> <!-- PositionJointInterface EffortJointInterface, velocity, position set it just for link 4 and 5-->
 
-  <arg name="start_rviz" default="True" />
+  <arg name="start_rviz" default="False" />
   <arg name="move_arm" default="True" /> <!-- moves arm once after ... seconds -->
   <arg name="move_arm_to" default="zero" /> <!-- zero or freaky state top -->
 
@@ -112,7 +112,7 @@
 <!--    load ball after 25 secs, default arg1 (line 113) = 18 -->
     <group if="$(arg use_ball)">
       <node pkg="kuka_kr5_gazebo" type="timed_roslaunch.sh"
-        args="16 kuka_kr5_gazebo load_ball.launch 
+        args="18 kuka_kr5_gazebo load_ball.launch 
         ball_name:=$(arg ball_name)
         ball_x_pos:=$(arg ball_x_pos)
         ball_y_pos:=$(arg ball_y_pos)
@@ -124,7 +124,7 @@
     <!--   switch control mode, default arg2 (line 125) = 20-->
     <group if="$(arg move_arm)">
       <node pkg="kuka_kr5_gazebo" type="timed_roslaunch.sh"
-        args="18 kuka_kr5_gazebo switch_to_continuous_effort_control_mode.launch
+        args="20 kuka_kr5_gazebo switch_to_continuous_effort_control_mode.launch
           move_arm_to:=switch"
         name="switch_to_continuous_effort_control" output="screen">
       </node>

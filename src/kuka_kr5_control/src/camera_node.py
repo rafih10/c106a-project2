@@ -46,7 +46,9 @@ def image_callback(ros_image):
     # Cluster the converted image so that the ball is in one cluster
     clustered_image = cluster_image(cv2_image)
 
-    cv2.imshow('test_window', clustered_image)
+    cv2.imshow('test_window', cv2_image)
+    cv2.waitKey(20)
+    print("Hello")
     return 
 
     # Find the cluster with the ball in it 
