@@ -73,15 +73,6 @@ def convert_image(ros_image):
         print(e)
         return -1
 
-# Uses opencv to perform k_means clustering on our images. 
-def do_kmeans(data, n_clusters=2):
-    # Cluster the image
-    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 100, 0.2)
-    _, clusters, centers = kmeans = cv2.kmeans(data.astype(np.float32), n_clusters, bestLabels=None, criteria=criteria, attempts=1, flags=cv2.KMEANS_RANDOM_CENTERS)
-
-    # Return the clusters and centers of those clusters
-    return clusters, np.uint8(centers)
-
 # Clusters the cv2 image and returns the clustered version
 def cluster_image(img, n_clusters=2, random_state=0):
     # Downsample img by a factor of 2 first using the mean to speed up K-means
@@ -89,19 +80,29 @@ def cluster_image(img, n_clusters=2, random_state=0):
 
     # first convert our 3-dimensional img_d array to a 2-dimensional array
     # whose shape will be (length * width, number of channels) hint: use img_d.shape
-    img_r = img_d.reshape((img_d.shape[0]*img_d.shape[1],img_d.shape[2]))
+    img_r = np.float32(img.reshape((-1,3)))
+
+    # Perfrom k means clustering
+    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
+    K = n_clusters
+    ret, label, center = cv2.kmeans(img_r, K, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
     
-    # fit the k-means algorithm on this reshaped array img_r using the
-    # the do_kmeans function defined above.
-    clusters, centers = do_kmeans(img_r,n_clusters)
+    # # fit the k-means algorithm on this reshaped array img_r using the
+    # # the do_kmeans function defined above.
+    # clusters, centers = do_kmeans(img_r,n_clusters)
 
-    # reshape this clustered image to the original downsampled image (img_d) shape
-    cluster_img = clusters.reshape((img_d.shape[0],img_d.shape[1],1))
+    # convert the image back
+    center = np.uint8(center)
+    res = center[label.flatten()]
+    res2 = res.reshape((img.shape))
 
-    # Upsample the image back to the original image (img) using nearest interpolation
-    img_u = cv2.resize(src=cluster_img, dsize=(img.shape[1], img.shape[0]), interpolation=cv2.INTER_NEAREST)
+    # # reshape this clustered image to the original downsampled image (img_d) shape
+    # cluster_img = clusters.reshape((img_d.shape[0],img_d.shape[1],1))
 
-    return img_u.astype(np.uint8)
+    # # Upsample the image back to the original image (img) using nearest interpolation
+    # img_u = cv2.resize(src=cluster_img, dsize=(img.shape[1], img.shape[0]), interpolation=cv2.INTER_NEAREST)
+
+    return res2.astype(np.uint8)
 
 
 # Given a clustered image, will find the ball and returns that cluster
