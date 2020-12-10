@@ -100,12 +100,25 @@ def cluster_image(img, n_clusters=4, random_state=0):
 
 # Given a clustered image, will find the ball and returns that cluster
 def get_ball_coordinates(clustered_image):
+    global camera_x, camera_y, flipped_plate
+    if (flipped_plate):
+        # Search through clustered image for ball
+        for x in range(camera_x - 20, camera_x + 20):
+            row = clustered_image[x]
+            for y in range(camera_y - 20, camera_y + 20):
+                # Check if any of the pixels are not white
+                if (row[y][0] < 100):
+                    camera_x = x
+                    camera_y = y
+                    return x, y
+
     # Search through clustered image for ball
     for x in range(20, 300):
         row = clustered_image[x]
         for y in range(200, 500):
             # Check if any of the pixels are not white
             if (row[y][0] < 100):
+                flipped_plate = True
                 return x, y
 
     # Ball is off the table
@@ -170,6 +183,11 @@ if __name__ == '__main__':
     y_mul_constant = 1
     x_add_constant = 0
     y_add_constant = 0
+
+    # Using these variables to make the camera faster
+    flipped_plate = False
+    camera_x = -1
+    camera_y = -1
 
     # Bridges between rospy image and cv2 image
     bridge = CvBridge()
