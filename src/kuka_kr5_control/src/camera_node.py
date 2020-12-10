@@ -44,15 +44,15 @@ def image_callback(ros_image):
     #     return
 
     # Cluster the converted image so that the ball is in one cluster
-    clustered_image = cluster_image(cv2_image)
+    #clustered_image = cluster_image(cv2_image)
 
-    # Wait for a bit of time
-    cv2.imshow('test_window', clustered_image)
-    cv2.waitKey(20)
-    return 
+    # Get the ball coordinates using the clustered image
+    #x_coord, y_coord = get_ball_coordinates(clustered_image)
 
-    # Get the ball coordinates
-    x_coord, y_coord = get_ball_coordinates(clustered_image)
+    # Get the ball coordinates using the regular image and looking for yellow
+    x_coord, y_coord = get_ball_coordinates(cv2_image)
+    print("X: " + str(x_coord) + "Y: " + str(y_coord))
+    return
 
     # Convert the coordinates to an odometry message which can be published to plate_control
     ball_odom = convert_to_odom(x_coord, y_coord)
@@ -73,7 +73,7 @@ def convert_image(ros_image):
         return -1
 
 # Clusters the cv2 image and returns the clustered version
-def cluster_image(img, n_clusters=3, random_state=0):
+def cluster_image(img, n_clusters=4, random_state=0):
     # Reshaping the image into a 2D array of pixels and 3 color values (RGB) and converting to float type
     img_r = np.float32(img.reshape((-1,3)))
 
@@ -86,9 +86,6 @@ def cluster_image(img, n_clusters=3, random_state=0):
     center = np.uint8(center)
     res = center[label.flatten()]
 
-    # Print out the array of centers of the clusters
-    print(center)
-
     # Return the reshaped image
     return res.reshape((img.shape))
 
@@ -96,7 +93,15 @@ def cluster_image(img, n_clusters=3, random_state=0):
 # Given a clustered image, will find the ball and returns that cluster
 def get_ball_coordinates(clustered_image):
     # Search through clustered image for ball
-    return 0, 1
+    for x in range(145, 500):
+        row = clustered_image[x]
+        for y in range(10, 360):
+            # Check if any of the pixels are not white
+            if (row[y][0] < 245 or row[y][1] < 245 or row[y][2] < 245):
+                return x, y
+
+    # Ball is off the table
+    return -1, -1
 
 
 # Converts the coordinates of the ball to a message which can be published to 
