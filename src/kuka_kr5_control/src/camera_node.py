@@ -36,8 +36,6 @@ def camera_listener():
 # Takes the information from the image and clusters it
 def image_callback(ros_image):
     # First process the image so its useable by the cv package a
-    print("Hello")
-    return 
     cv2_image = convert_image(ros_image)
 
     # Checking to make sure the image was properly converted
@@ -47,6 +45,9 @@ def image_callback(ros_image):
 
     # Cluster the converted image so that the ball is in one cluster
     clustered_image = cluster_image(cv2_image)
+
+    cv2.imshow('test_window', clustered_image)
+    return 
 
     # Find the cluster with the ball in it 
     ball_cluster = get_ball_cluster(clustered_image)
@@ -93,8 +94,6 @@ def cluster_image(img, n_clusters=2, random_state=0):
     # fit the k-means algorithm on this reshaped array img_r using the
     # the do_kmeans function defined above.
     clusters, centers = do_kmeans(img_r,n_clusters)
-    print(centers)
-    return 1
 
     # reshape this clustered image to the original downsampled image (img_d) shape
     cluster_img = clusters.reshape((img_d.shape[0],img_d.shape[1],1))
