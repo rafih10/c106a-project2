@@ -13,6 +13,12 @@ from nav_msgs.msg import Odometry
 # Used to convert the rospy image to something usable by cv2
 from cv_bridge import CvBridge, CvBridgeError
 
+# Used for making the odometry points
+from geometry_msgs.msg import Point, Pose, Quaternion, Twist, Vector3
+
+# Used to create the quaternion
+import tf
+
 # Imports for math stuff
 import numpy as np
 import cv2
@@ -66,19 +72,8 @@ def convert_image(ros_image):
         print(e)
         return -1
 
-
-def do_kmeans(data, n_clusters):
-    """Uses opencv to perform k-means clustering on the data given. Clusters it into
-       n_clusters clusters.
-       Args:
-         data: ndarray of shape (n_datapoints, dim)
-         n_clusters: int, number of clusters to divide into.
-       Returns:
-         clusters: integer array of length n_datapoints. clusters[i] is
-         a number in range(n_clusters) specifying which cluster data[i]
-         was assigned to. 
-    """
-
+# Uses opencv to perform k_means clustering on our images. 
+def do_kmeans(data, n_clusters=2):
     # Cluster the image
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 100, 0.2)
     _, clusters, centers = kmeans = cv2.kmeans(data.astype(np.float32), n_clusters, bestLabels=None, criteria=criteria, attempts=1, flags=cv2.KMEANS_RANDOM_CENTERS)
@@ -99,6 +94,7 @@ def cluster_image(img, n_clusters=2, random_state=0):
     # the do_kmeans function defined above.
     clusters, centers = do_kmeans(img_r,n_clusters)
     print(centers)
+    return 1
 
     # reshape this clustered image to the original downsampled image (img_d) shape
     cluster_img = clusters.reshape((img_d.shape[0],img_d.shape[1],1))
@@ -125,7 +121,7 @@ def get_ball_cluster(clustered_image):
 # in the Gazebo simulation
 def get_ball_coordinates(cluster):
     # To Do Here
-    return 1
+    return 1, 0
 
 
 # Converts the coordinates of the ball to a message which can be published to 
@@ -144,6 +140,27 @@ def convert_to_odom(x_coord, y_coord):
     odom.header.stamp = current_time    # Set the timestamp for the odom
     odom.header.frame_id = "ee_link"    # Found this in plate_control_node, not sure if it is right or not
 
+    # Converting the coords on the camera to actual coordinates
+    x_coord = x_coord * x_mul_constant + x_add_constant
+    y_coord = y_coord * y_mul_constant + y_add_constant
+
+    # set the position
+    odom.pose.pose = Pose(Point(x_coord, y_coord, 0.), Quaternion(*odom_quat))
+
+    # set the velocity
+    odom.child_frame_id = "idk"
+    
+    # Calculate the velocity using a frame by frame calculation
+    dt = current_time - last_time
+    vx = (x_coord - previous_x) / dt
+    vy = (y_coord - previous_y) / dt
+
+    odom.twist.twist = Twist(Vector3(vx, vy, 0), Vector3(0, 0, 0))
+
+    # Set the last values
+    last_time = current_time
+    previous_x = x_coord
+    previous_y = y_coord
 
     # To Do here
     return odom
@@ -160,8 +177,17 @@ if __name__ == '__main__':
     previous_y = 0
     last_time = 0
 
+    # Used to convert from camera coords to irl coords
+    x_mul_constant = 1
+    y_mul_constant = 1
+    x_add_constant = 0
+    y_add_constant = 0
+
     # Bridges between rospy image and cv2 image
     bridge = CvBridge()
+
+    # Quaternion is not used, so creating a default one for the pose
+    odom_quat = tf.transformations.quaternion_from_euler(0, 0, 0)
 
     # Start listening to the camer node
     camera_listener()
