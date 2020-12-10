@@ -16,7 +16,7 @@
    <arg name="use_asus_xtion" default="False" />
    <arg name="camera_pos_z" default="1" />
    <arg name="camera_pos_y" default="0.0" /> 
-   <arg name="camera_pos_x" default="-1.5" /> <!-- -1.5 default actually this - no sense-->
+   <arg name="camera_pos_x" default="-1.25" /> <!-- -1.5 default actually this - no sense-->
    <arg name="use_rgb" default="True" />
    <arg name="use_depth" default="True" />
    <arg name="camera_fps" default="30" /> <!-- both fps rgb and depth  -->
@@ -27,7 +27,7 @@
     <!-- Ball: -->
     <arg name="use_ball" default="True" />
     <arg name="ball_name" default="ball" />
-    <arg name="ball_x_pos" default="1.4" /> <!-- 1.4 (for zero state) -->
+    <arg name="ball_x_pos" default="1.5" /> <!-- 1.4 (for zero state) -->
     <arg name="ball_y_pos" default="0.0" /> <!-- world y= x(frame) (for zero state!) -->
     <arg name="ball_z_pos" default="0.66" />   <!-- 0.67 (for zero state), 1.76 (top) -->
 
