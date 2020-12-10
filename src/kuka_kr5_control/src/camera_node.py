@@ -46,16 +46,13 @@ def image_callback(ros_image):
     # Cluster the converted image so that the ball is in one cluster
     clustered_image = cluster_image(cv2_image)
 
-    cv2.imshow('test_window', cv2_image)
+    # Wait for a bit of time
+    cv2.imshow('test_window', clustered_image)
     cv2.waitKey(20)
-    print("Hello")
     return 
 
-    # Find the cluster with the ball in it 
-    ball_cluster = get_ball_cluster(clustered_image)
-
-    # Take the ball cluster and convert it to usable coordinates
-    x_coord, y_coord = get_ball_coordinates(ball_cluster)
+    # Get the ball coordinates
+    x_coord, y_coord = get_ball_coordinates(clustered_image)
 
     # Convert the coordinates to an odometry message which can be published to plate_control
     ball_odom = convert_to_odom(x_coord, y_coord)
@@ -68,62 +65,38 @@ def image_callback(ros_image):
 # Returns converted image
 def convert_image(ros_image):
     try:
-        # Try to convert the image and return the converted image in grayscale
-        return bridge.imgmsg_to_cv2(ros_image, "mono8")
+        # Try to convert the image and return the converted image in rbg
+        return bridge.imgmsg_to_cv2(ros_image, "rgb8")
     except CvBridgeError as e:
         # Print our error and return -1
         print(e)
         return -1
 
 # Clusters the cv2 image and returns the clustered version
-def cluster_image(img, n_clusters=2, random_state=0):
-    # Downsample img by a factor of 2 first using the mean to speed up K-means
-    img_d = cv2.resize(img, dsize=(img.shape[1]/2, img.shape[0]/2), interpolation=cv2.INTER_NEAREST)
-
-    # first convert our 3-dimensional img_d array to a 2-dimensional array
-    # whose shape will be (length * width, number of channels) hint: use img_d.shape
+def cluster_image(img, n_clusters=3, random_state=0):
+    # Reshaping the image into a 2D array of pixels and 3 color values (RGB) and converting to float type
     img_r = np.float32(img.reshape((-1,3)))
 
     # Perfrom k means clustering
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
     K = n_clusters
     ret, label, center = cv2.kmeans(img_r, K, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
-    
-    # # fit the k-means algorithm on this reshaped array img_r using the
-    # # the do_kmeans function defined above.
-    # clusters, centers = do_kmeans(img_r,n_clusters)
 
-    # convert the image back
+    # convert the image back to 8 bit values
     center = np.uint8(center)
     res = center[label.flatten()]
-    res2 = res.reshape((img.shape))
 
-    # # reshape this clustered image to the original downsampled image (img_d) shape
-    # cluster_img = clusters.reshape((img_d.shape[0],img_d.shape[1],1))
+    # Print out the array of centers of the clusters
+    print(center)
 
-    # # Upsample the image back to the original image (img) using nearest interpolation
-    # img_u = cv2.resize(src=cluster_img, dsize=(img.shape[1], img.shape[0]), interpolation=cv2.INTER_NEAREST)
-
-    return res2.astype(np.uint8)
+    # Return the reshaped image
+    return res.reshape((img.shape))
 
 
 # Given a clustered image, will find the ball and returns that cluster
-def get_ball_cluster(clustered_image):
-    # Ball is in the 1 cluster so look for ones
-    if (np.mean(clustered_image) < 0.5):
-        return 1
-
-    # Ball is in the 0 cluster so look for zeros
-    else:
-        return 0
-
-
-
-# Given the cluster that the ball is in, will return the coordinates of the ball
-# in the Gazebo simulation
-def get_ball_coordinates(cluster):
-    # To Do Here
-    return 1, 0
+def get_ball_coordinates(clustered_image):
+    # Search through clustered image for ball
+    return 0, 1
 
 
 # Converts the coordinates of the ball to a message which can be published to 
@@ -175,9 +148,9 @@ if __name__ == '__main__':
     ball_pub = rospy.Publisher('ball_coordinates', Odometry, queue_size=10)
 
     # Need to save these variables for odom calculations
+    last_time = 0
     previous_x = 0
     previous_y = 0
-    last_time = 0
 
     # Used to convert from camera coords to irl coords
     x_mul_constant = 1
