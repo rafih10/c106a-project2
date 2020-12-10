@@ -16,7 +16,7 @@
    <arg name="use_asus_xtion" default="False" />
    <arg name="camera_pos_z" default="1" />
    <arg name="camera_pos_y" default="0.0" /> 
-   <arg name="camera_pos_x" default="-1.3" /> <!-- -1.5 default actually this - no sense-->
+   <arg name="camera_pos_x" default="-1.5" /> <!-- -1.5 default actually this - no sense-->
    <arg name="use_rgb" default="True" />
    <arg name="use_depth" default="True" />
    <arg name="camera_fps" default="30" /> <!-- both fps rgb and depth  -->

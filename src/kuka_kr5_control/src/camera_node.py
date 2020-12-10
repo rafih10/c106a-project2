@@ -29,8 +29,14 @@ def camera_listener():
     # Topic = "/my_camera/sensor/camera/rgb/image_raw" - camera information
     camera_subscriber = rospy.Subscriber("/my_camera/sensor/camera/rgb/image_raw", Image, image_callback)
 
+    # ball_subscriber = rospy.Subscriber("/gazebo/ball/odom", Odometry, ball_callback)
+
     # Wait until this node start getting information
     rospy.spin()
+
+# def ball_callback(ball_coord):
+# 	ball_point = ball_coord.pose.pose.position
+# 	print("Actual ball: "+ "X: " + str(ball_point.x) + " Y: " + str(ball_point.y))
 
 
 # Takes the information from the image and clusters it
@@ -45,13 +51,15 @@ def image_callback(ros_image):
 
     # Cluster the converted image so that the ball is in one cluster
     #clustered_image = cluster_image(cv2_image)
+    cv2.imshow("test",cv2_image)
+    cv2.waitKey(10)
 
     # Get the ball coordinates using the clustered image
     #x_coord, y_coord = get_ball_coordinates(clustered_image)
 
     # Get the ball coordinates using the regular image and looking for yellow
-    x_coord, y_coord = get_ball_coordinates(cv2_image)
-    print("X: " + str(x_coord) + "Y: " + str(y_coord))
+    y_coord, x_coord = get_ball_coordinates(cv2_image)
+    print("X: " + str(x_coord) + " Y: " + str(y_coord))
     return
 
     # Convert the coordinates to an odometry message which can be published to plate_control
@@ -93,11 +101,11 @@ def cluster_image(img, n_clusters=4, random_state=0):
 # Given a clustered image, will find the ball and returns that cluster
 def get_ball_coordinates(clustered_image):
     # Search through clustered image for ball
-    for x in range(145, 500):
+    for x in range(20, 300):
         row = clustered_image[x]
-        for y in range(10, 360):
+        for y in range(200, 500):
             # Check if any of the pixels are not white
-            if (row[y][0] < 245 or row[y][1] < 245 or row[y][2] < 245):
+            if (row[y][0] < 100):
                 return x, y
 
     # Ball is off the table
