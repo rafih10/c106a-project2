@@ -3,8 +3,11 @@
 <launch>
   <arg name="motors_controller_type" default="PositionJointInterface" /> <!-- PositionJointInterface, velocity, position -->
 
+  <node name="our_camera_node" pkg="kuka_kr5_control" type="camera_node" output="screen"/>
+
   <!-- differ between different motors_controller_types! -->
   <rosparam file="$(find kuka_kr5_control)/config/controller_node.yaml" command="load"/>
   <node name="controller_node_name" pkg="kuka_kr5_control" type="plate_control_node" output="screen"/>
+
 
 </launch>

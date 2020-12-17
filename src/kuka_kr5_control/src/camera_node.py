@@ -58,6 +58,8 @@ def image_callback(ros_image):
 
     # Get the ball coordinates using the regular image and looking for yellow
     y_coord, x_coord = get_ball_coordinates(cv2_image)
+    if (y_coord == -1 or x_coord == -1):
+    	return
     # return
 
     # Convert the coordinates to an odometry message which can be published to plate_control
@@ -103,18 +105,18 @@ def get_ball_coordinates(clustered_image):
         # Search through clustered image for ball
         camera_x = camera_vals[1]
         camera_y = camera_vals[2]
-        for x in range(camera_x - 20, camera_x + 20):
+        for x in range(camera_x - 30, camera_x + 30):
             row = clustered_image[x]
-            for y in range(camera_y - 20, camera_y + 20):
+            for y in range(camera_y - 30, camera_y + 30):
                 # Check if any of the pixels are not white
                 if (row[y][0] < 100):
                     camera_vals[1] = x
                     camera_vals[2] = y
                     return x, y
     # Search through clustered image for ball
-    for x in range(20, 300):
+    for x in range(80, 300):
         row = clustered_image[x]
-        for y in range(200, 500):
+        for y in range(150, 500):
             # Check if any of the pixels are not white
             if (row[y][0] < 100):
                 camera_vals[0] = True
@@ -154,7 +156,7 @@ def convert_to_odom(x_coord, y_coord):
     odom.child_frame_id = "idk"
     
     # Calculate the velocity using a frame by frame calculation
-    dt = 0.05 #current_time - last_time
+    dt = 0.1 #current_time - last_time
     vx = (x_coord - previous_x) / dt
     vy = (y_coord - previous_y) / dt
 
@@ -182,10 +184,10 @@ if __name__ == '__main__':
     prev_vals = [0, 0, 0]
 
     # Used to convert from camera coords to irl coords
-    x_mul_constant = 0.00576
-    y_mul_constant = 0.0005019
-    x_add_constant = 0
-    y_add_constant = 0
+    x_mul_constant = -0.0018
+    y_mul_constant = -0.00068
+    x_add_constant = 1.6
+    y_add_constant = 0.26012
 
     # Using these variables to make the camera faster
     flipped_plate = False
