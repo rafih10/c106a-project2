@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+
+<node name="bouncer" pkg="kuka_kr5_control" type="plate_bouncer.py" output="screen"/>
+
+
+</launch>

@@ -18,7 +18,7 @@ namespace kuka
     , integral_y_(0.0)
   {
     //get Params:
-    controller_type_ = nh.param("control_constants/controller_type", std::string("pid"));
+    controller_type_ = nh.param("control_constants/controller_type", std::string("state"));
     p_gain_          = nh.param("control_constants/p_gain", 3.0);
     i_gain_          = nh.param("control_constants/i_gain", 3.0);
     d_gain_          = nh.param("control_constants/d_gain", 3.0); //default all 3
@@ -54,10 +54,10 @@ namespace kuka
 
     //Subscriber:
     joints_sub_ = nh.subscribe("/kuka/joint_states", 5, &ControlNode::jointsCallback, this);
-    ball_state_sub_ = nh.subscribe("/gazebo/ball/odom", 5, &ControlNode::ballCallback, this);
+    //ball_state_sub_ = nh.subscribe("/gazebo/ball/odom", 5, &ControlNode::ballCallback, this);
 
     // Use this once we start publishing the coordinates of the ball
-    //ball_state_sub_ = nh.subscribe("ball_coordinates", 5, &ControlNode::ballCallback, this);
+    ball_state_sub_ = nh.subscribe("ball_coordinates", 5, &ControlNode::ballCallback, this);
 
     command13_sub_ = nh.subscribe("/kuka/control13_command", 5, &ControlNode::controlCommandCallback_13, this);
     command46_sub_ = nh.subscribe("/kuka/control46_command", 5, &ControlNode::controlCommandCallback_46, this);

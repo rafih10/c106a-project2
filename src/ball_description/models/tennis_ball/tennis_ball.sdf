@@ -33,7 +33,7 @@
             </ode>
           </friction>
           <bounce>
-            <restitution_coefficient>0.8</restitution_coefficient>
+            <restitution_coefficient>1</restitution_coefficient>
             <threshold>0.0</threshold>
           </bounce>
           <contact>

@@ -87,7 +87,7 @@
 import sympy as sp  ## sudo apt-get install python-sympy
 import numpy as np
 import control as co # pip install control
-import slycot            # pip install   slycot
+#import slycot            # pip install   slycot
 
 
 # Do all symbolically first:
@@ -151,9 +151,11 @@ B = B.subs(subs_vec)
 
 print "A:="
 print np.matrix(A)
+print np.shape(A)
 
 print "B:="
 print np.matrix(B)
+print np.shape(B)
 
 A_eig = list(A.eigenvals().keys())
 
@@ -164,18 +166,18 @@ print "A_eig:="
 print np.matrix(A_eig)
 
 # Controllability
-control_matrix = co.ctrb(A, B)
+control_matrix = co.ctrb(np.matrix(A),np.matrix(B))
 control_matrix = sp.Matrix(control_matrix)
 
 # Observability:
-observe_matrix = co.obsv(A, C)
+observe_matrix = co.obsv(np.matrix(A), np.matrix(C))
 observe_matrix = sp.Matrix(observe_matrix)
 
 print "Rank of control_matrix: "+str(control_matrix.rank())
 print "Rank of observe_matrix: "+str(observe_matrix.rank()) ## tODO this is a problem!?
 
 # pole wish position:
-poles_wish = [-6, -6, -6, -6, -6, -6, -6, -6]
+poles_wish = [-10, -11, -10.1, -11.1, -15, -15.1, -15.2, -15.3]
 
 
 A = np.matrix(A)
